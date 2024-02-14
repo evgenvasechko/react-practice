@@ -1,0 +1,20 @@
+.newText {
+    display: flex;
+    flex-direction: column;
+
+    &__write {
+        outline: none;
+        resize: none;
+    }
+    &__send {
+        width: 100%;
+        border: none; 
+        background: transparent;
+        padding: 5px;
+        &:hover {
+            background: #3b3b3b;
+            color: #ff8d00;
+            transition: all .5s ease;
+        }
+    }
+}

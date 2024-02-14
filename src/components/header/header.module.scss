@@ -1,0 +1,22 @@
+.header {
+    background: #3b3b3b;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    &__text {
+        flex: 6;
+        color: #fff;
+        text-align: left;
+        font-size: 16pt;
+        margin-left: 20px;
+    }
+    &__logo {
+        flex: 1;
+        width: 100px;
+        &:hover {
+            transform-origin: 80% 70%;
+            rotate: 10deg;
+            transition: all .5s ease;
+        }
+    }
+}
