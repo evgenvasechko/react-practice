@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './users.module.scss'
 import axios from "axios";
 import userAva from "../../assets/images/defaultAva.png"
 
 
-const Users = (props) => {
-    if (props.users.length === 0) {
+const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }) => {
+    const [users, setUsers] = useState(data);
+
+    useEffect(() => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            debugger
-            props.setUsers(response.data.items);
+            setUsersToStore(response.data.items);
         });
-    }
+    }, []);
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            setUsers(data);
+        }
+    }, [data]);
 
     return <div className={styles.users}>
-        {
-            props.users.map(u => <div key={u.id}>
+        {users.length > 0 &&
+            users.map(u => <div key={u.id}>
                 <div className={styles.user}>
                     <div className={styles.user__short}>
                         <div className={styles.user__avatar}>
@@ -29,8 +36,8 @@ const Users = (props) => {
                     <div className={styles.user__following}>
                         {
                         u.followed ? 
-                        <button className="button button_true" onClick={ () => {props.unfollow(u.id)} }>Unfollow</button> : 
-                        <button className="button button_false" onClick={ () => {props.follow(u.id)} }>Follow</button>
+                        <button className="button button_true" onClick={ () => {unfollow(u.id)} }>Unfollow</button> :
+                        <button className="button button_false" onClick={ () => {follow(u.id)} }>Follow</button>
                         }
                     </div>
                 </div>
