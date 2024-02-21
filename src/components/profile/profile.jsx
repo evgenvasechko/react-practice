@@ -1,5 +1,5 @@
 import React from "react";
-import { addPostActionCreate as addPost, changePostActionCreate as changingPost } from "../actions/profile";
+import { addPostActionCreate as addPost, changePostActionCreate as changingPost } from "../../actions/profile";
 import { connect } from "react-redux";
 import styles from "./profile.module.scss";
 import Post from "./profileWall/profilePost/post";

@@ -1,4 +1,4 @@
-import { actionTypes } from "../components/actions/profile";
+import { actionTypes } from "../actions/profile";
 
 let initialState = {
     postsData: [
