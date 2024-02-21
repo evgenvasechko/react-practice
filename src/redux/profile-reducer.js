@@ -1,5 +1,4 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST = 'UPDATE-POST';
+import { actionTypes } from "../components/actions/profile";
 
 let initialState = {
     postsData: [
@@ -37,10 +36,9 @@ let initialState = {
     newPostText: ''
 };
 
-
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case actionTypes.ADD_POST:
             if (state.newPostText) {
                 return {
                     ...state,
@@ -49,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
                 }
             }
             return state;
-        case UPDATE_POST:
+        case actionTypes.UPDATE_POST:
             return {
                 ...state,
                 newPostText: action.newText
@@ -57,8 +55,5 @@ const profileReducer = (state = initialState, action) => {
         default: return state;
     }
 }
-
-export const addPostActionCreate = () => ({type: ADD_POST});
-export const changePostActionCreate = (text) => ({type: UPDATE_POST, newText: text});
 
 export default profileReducer;

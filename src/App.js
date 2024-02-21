@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 
 import Header from './components/header/header'
 import Nav from './components/navbar/navbar';
-import ProfileContainer from './components/profile/profile-container';
+import ProfileContainer from './components/profile/profile';
 import DialogsContainer from './components/dialogs/dialogs-container';
 import UsersContainer from './components/users/users-container';
 

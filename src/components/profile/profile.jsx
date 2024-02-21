@@ -1,19 +1,22 @@
 import React from "react";
-import styles from "./profile.module.scss"
+import { addPostActionCreate as addPost, changePostActionCreate as changingPost } from "../actions/profile";
+import { connect } from "react-redux";
+import styles from "./profile.module.scss";
 import Post from "./profileWall/profilePost/post";
 
 const Profile = (props) => {
-    let addPost = () => {
+    const addPost = () => {
         props.addPost()
     };
 
-    let changingPost = (e) => {
+    const changingPost = (e) => {
         let body = e.target.value;
         props.changingPost(body)
     };
-    let postsArr = props.posts.map((elem) => {
+
+    const postsArr = props.posts.map((elem) => {
         return <Post id={elem.id} likes={elem.likes} text={elem.text} name={elem.name} />
-    })
+    });
 
     return(
         <main className={styles.profile}>
@@ -23,12 +26,29 @@ const Profile = (props) => {
                 <div className={styles.profile__name}>Hella Blackderville</div>
             </div>
             <div className={styles.profile__addPost}>
-                <textarea value={props.newPostText} onChange={ changingPost } name="addPost" id="addPost" className={styles.profile__postText} cols="50" rows="3" />
-                <button className={styles.profile__addBtn} onClick={ addPost }>Add Post</button>
+                <textarea value={props.newPostText}
+                          onChange={changingPost}
+                          name="addPost"
+                          id="addPost"
+                          className={styles.profile__postText}
+                          cols="50"
+                          rows="3"
+                />
+                <button className={styles.profile__addBtn} onClick={addPost}>Add Post</button>
             </div>
             {postsArr}
         </main>
     )
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+    posts: state.profilePage.postsData,
+    newPostText: state.profilePage.newPostText,
+});
+
+const mapDispatchToProps = ({
+    addPost,
+    changingPost,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
