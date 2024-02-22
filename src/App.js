@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 
 import Header from './components/header/header'
 import Nav from './components/navbar/navbar';
-import ProfileContainer from './components/profile/profile';
-import DialogsContainer from './components/dialogs/dialogs-container';
+import Profile from './components/profile/profile';
+import Dialogs from './components/dialogs/dialogs';
 import UsersContainer from './components/users/users-container';
 
 
@@ -20,8 +20,8 @@ function App(props) {
           <Nav />
           <div className='content'>
               <Routes>
-                <Route path="/profile" element={<ProfileContainer />} />
-                <Route path="/dialogs" element={<DialogsContainer />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/dialogs" element={<Dialogs />} />
                 <Route path="/users" element={<UsersContainer />} />
                 <Route path="*" element={<Navigate to="/profile" replace />} />
               </Routes>

@@ -3,14 +3,15 @@ import styles from "./dialogs.module.scss"
 import DialogMessageWrite from "./dialog-write-message/dialog-write-message";
 import DialogSenders from "./dialogs-senders/dialog-senders";
 import DialogMessages from "./dialogs-messages/dialog-messages";
+import { connect } from "react-redux";
 
 
 const Dialogs = (props) => {
-    let dialogsDataArr = props.dialogsPage.dialogsData.map((elem) => {
+    const dialogsDataArr = props.dialogsPage.dialogsData.map((elem) => {
         return <DialogSenders id={elem.id} name={elem.name} />
     })
         
-    let messagesDataArr = props.dialogsPage.messagesData.map((elem) => {
+    const messagesDataArr = props.dialogsPage.messagesData.map((elem) => {
         return <DialogMessages message={elem.message}/>
     })
     return (
@@ -26,4 +27,11 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs;
+const mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage,
+    }
+};
+
+
+export default connect(mapStateToProps)(Dialogs);
