@@ -1,5 +1,6 @@
 import dialogsReducer from "../reducers/dialogs-reducer";
 import profileReducer from "../reducers/profile-reducer";
+import usersReducer from "../reducers/users-reducer";
 
 let store = {
     _state: {
@@ -102,6 +103,7 @@ let store = {
     dispatch(action) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.usersPage = usersReducer(this._state.usersPage, action);
         this._callSubscriber(this._state);
     }
     

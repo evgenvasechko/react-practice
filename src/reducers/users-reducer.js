@@ -1,6 +1,4 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
+import { actionTypes } from "../actions/users";
 
 let initialState = {
         
@@ -82,7 +80,7 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FOLLOW:
+        case actionTypes.FOLLOW:
             return {
                 ...state, 
                 usersData: state.usersData.map(u => {
@@ -92,7 +90,7 @@ const usersReducer = (state = initialState, action) => {
                     return u;
                 })
             };
-        case UNFOLLOW:
+        case actionTypes.UNFOLLOW:
             return {
                 ...state,
                 usersData: state.usersData.map(u => {
@@ -102,14 +100,10 @@ const usersReducer = (state = initialState, action) => {
                     return u;
                 })
             };
-        case SET_USERS:
+        case actionTypes.SET_USERS:
             return {...state, usersData: action.usersData}
         default: return state;
     }
 }
-
-export const followActionCreate = (userId) => ({type: FOLLOW, userId});
-export const unfollowActionCreate = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersActionCreate = (usersData) => ({type: SET_USERS, usersData})
 
 export default usersReducer;

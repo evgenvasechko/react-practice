@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from './users.module.scss'
 import axios from "axios";
-import userAva from "../../assets/images/defaultAva.png"
+import userAva from "../../assets/images/defaultAva.png";
+import { connect } from "react-redux";
+
+import { followActionCreate as follow, 
+        unfollowActionCreate as unfollow,
+        setUsersActionCreate as setUsers } from "./../../actions/users";
 
 
 const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }) => {
@@ -47,4 +52,15 @@ const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }
     </div>
 }
 
-export default Users;
+
+const mapStateToProps = (state) => ({
+    users: state.usersPage.usersData,
+});
+
+const mapDispatchToProps = {
+    follow,
+    unfollow,
+    setUsers,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

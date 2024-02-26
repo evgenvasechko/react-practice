@@ -7,7 +7,7 @@ import Header from './components/header/header'
 import Nav from './components/navbar/navbar';
 import Profile from './components/profile/profile';
 import Dialogs from './components/dialogs/dialogs';
-import UsersContainer from './components/users/users-container';
+import Users from './components/users/users';
 
 
 
@@ -22,7 +22,7 @@ function App(props) {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/dialogs" element={<Dialogs />} />
-                <Route path="/users" element={<UsersContainer />} />
+                <Route path="/users" element={<Users />} />
                 <Route path="*" element={<Navigate to="/profile" replace />} />
               </Routes>
           </div>
