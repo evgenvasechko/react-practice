@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './post.module.scss'
-import Path from '../../../../images/images4.jpg'
+import Path from '../../../../assets/images/images4.jpg'
 
 const Post = (props) => {
     return (

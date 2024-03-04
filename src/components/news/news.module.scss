@@ -1,0 +1,40 @@
+.news {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    &__title {
+        margin: 0;
+    }
+    &__hero {
+        width: 90%;
+    }
+    &__text {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    &__desc {
+        text-align: left;
+        max-height: 25px;
+        overflow: hidden;
+        transition: max-height linear .6s;
+        &_close {
+            max-height: 600px;
+            text-align: left;
+            transition: max-height linear .6s;
+        }
+    }
+    &__arrow {
+        width: 15px;
+        transition: all linear .6s;
+        &_close {
+            width: 15px;
+            transform: rotate(180deg);
+            transition: all linear .6s;
+        }
+    }
+}

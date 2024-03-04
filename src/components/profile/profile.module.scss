@@ -1,7 +1,7 @@
 .profile {
     &__hero {
         min-height: 200px;
-        background-image: url('../../images/background.jpg');
+        background-image: url('../../assets/images/background.jpg');
         background-position: 60%;
         background-size: cover;
     }
@@ -14,7 +14,7 @@
         align-items: center;
     }
     &__avatar {
-        background: url('../../images/ava2.png');
+        background: url('../../assets/images/ava2.png');
         width: 150px;
         height: 150px;
         background-position: 50% 50%;
