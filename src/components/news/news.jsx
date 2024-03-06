@@ -1,47 +1,40 @@
-import React from "react";
+import React from 'react';
 import styles from './news.module.scss';
 import headPhoto from '../../assets/images/newsHero.jpeg';
-import arrow from '../../assets/icons/arrowOpen.png'
+import arrow from '../../assets/icons/arrowOpen.png';
 
 class News extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: 'First event of the summer!',
-            headPhoto: headPhoto,
-            // description: 'Short text about event before the accordion rolling out...',
-            longDescription: 'Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...Short text about event before the accordion rolling out...',
             opened: false,
-            arrow: arrow,
-            arrowClassName: styles.news__arrow,
-            textClassName: styles.news__desc
         }
     }
-    openFullText = () => {
-        return this.state.opened ? 
-        this.setState({
-            opened: false,
-            arrowClassName: styles.news__arrow,
-            textClassName: styles.news__desc
-        })
-        :
-        this.setState({
-            opened: true,
-            arrowClassName: styles.news__arrow_close,
-            textClassName: styles.news__desc_close
-        });
+
+    toggleFullShortText = () => {
+        this.setState(prev => ({
+            opened: !prev.opened,
+        }));
     }
+
     render() {
-        return <div className={styles.news}>
-            <h1 className={styles.news__title}>{this.state.title}</h1>
-            <img className={styles.news__hero} src={this.state.headPhoto} alt="hero-photo must be here..." />
-            <div className={styles.news__text}>
-                <div className={this.state.textClassName}>
-                    {this.state.longDescription}
+        const { opened } = this.state;
+        const { title = 'Lorem ipsum', photo = headPhoto, longDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eligendi iusto officiis placeat quibusdam\n' +
+            '    voluptate? Culpa cumque error eum explicabo id, nihil nisi, placeat quia quibusdam, recusandae reiciendis soluta\n' +
+            '    vitae?' } = this.props;
+
+        return (
+            <div className={styles.news}>
+                <h1 className={styles.news__title}>{title}</h1>
+                <img className={styles.news__hero} src={photo} alt="hero-photo must be here..."/>
+                <div className={styles.news__text}>
+                    <div className={`${styles.news__desc}${opened ? ' ' + styles.opened : ''}`}>
+                        {longDescription}
+                    </div>
+                    <img className={`${styles.news__arrow}`} onClick={this.toggleFullShortText} src={arrow} alt=""/>
                 </div>
-                <img className={this.state.arrowClassName} onClick={this.openFullText} src={this.state.arrow} alt="" />
             </div>
-        </div>
+        );
     }
 }
 

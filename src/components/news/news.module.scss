@@ -22,19 +22,15 @@
         max-height: 25px;
         overflow: hidden;
         transition: max-height linear .6s;
-        &_close {
+        &.opened {
             max-height: 600px;
-            text-align: left;
-            transition: max-height linear .6s;
+            & + img[class*=__arrow] {
+                transform: rotate(180deg);
+            }
         }
     }
     &__arrow {
         width: 15px;
         transition: all linear .6s;
-        &_close {
-            width: 15px;
-            transform: rotate(180deg);
-            transition: all linear .6s;
-        }
     }
 }
