@@ -8,7 +8,8 @@ import Nav from './components/navbar/navbar';
 import Profile from './components/profile/profile';
 import Dialogs from './components/dialogs/dialogs';
 import Users from './components/users/users';
-import News from './components/news/news'
+import NewsPage from './components/news/news-page';
+import News from './components/news/news-unit/news';
 
 
 
@@ -24,7 +25,7 @@ function App(props) {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/dialogs" element={<Dialogs />} />
                 <Route path="/users" element={<Users />} />
-                <Route path="/news" element={<News />} />
+                <Route path="/news" element={<NewsPage />} />
                 <Route path="*" element={<Navigate to="/profile" replace />} />
               </Routes>
           </div>

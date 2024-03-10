@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './news.module.scss';
-import headPhoto from '../../assets/images/newsHero.jpeg';
-import arrow from '../../assets/icons/arrowOpen.png';
+import defaultPhoto from '../../../assets/images/newsHero.jpeg';
+import arrow from '../../../assets/icons/arrowOpen.png';
 
 class News extends React.Component {
     constructor(props) {
@@ -19,14 +19,14 @@ class News extends React.Component {
 
     render() {
         const { opened } = this.state;
-        const { title = 'Lorem ipsum', photo = headPhoto, longDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eligendi iusto officiis placeat quibusdam\n' +
+        const { title = 'Lorem ipsum', headPhoto = headPhoto, longDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eligendi iusto officiis placeat quibusdam\n' +
             '    voluptate? Culpa cumque error eum explicabo id, nihil nisi, placeat quia quibusdam, recusandae reiciendis soluta\n' +
             '    vitae?' } = this.props;
 
         return (
             <div className={styles.news}>
                 <h1 className={styles.news__title}>{title}</h1>
-                <img className={styles.news__hero} src={photo} alt="hero-photo must be here..."/>
+                <img className={styles.news__hero} src={headPhoto ? headPhoto : defaultPhoto} alt="hero-photo must be here..."/>
                 <div className={styles.news__text}>
                     <div className={`${styles.news__desc}${opened ? ' ' + styles.opened : ''}`}>
                         {longDescription}
