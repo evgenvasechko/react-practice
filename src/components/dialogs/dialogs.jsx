@@ -8,11 +8,11 @@ import { connect } from "react-redux";
 
 const Dialogs = (props) => {
     const dialogsDataArr = props.dialogsPage.dialogsData.map((elem) => {
-        return <DialogSenders id={elem.id} name={elem.name} />
+        return <DialogSenders key={elem.id} id={elem.id} name={elem.name} />
     })
         
     const messagesDataArr = props.dialogsPage.messagesData.map((elem) => {
-        return <DialogMessages message={elem.message}/>
+        return <DialogMessages key={elem.id} message={elem.message}/>
     })
     return (
         <div className={styles.dialogs}>

@@ -8,6 +8,7 @@ import News from "./news-unit/news";
 const NewsPage = (props) => {
     const newsArr = props.newsData.map((elem) => {
         return <News 
+            key={elem.id}
             id={elem.id} 
             title={elem.title} 
             likes={elem.likes} 
