@@ -1,8 +1,13 @@
-import React from "react";
-import styles from './post.module.scss'
-import Path from '../../../../assets/images/images4.jpg'
+import React, { memo } from "react";
+import styles from './post.module.scss';
+import Path from '../../../../assets/images/images4.jpg';
+import { likePostActionCreate as likePost } from "../../../../actions/profile";
+import { connect } from "react-redux";
 
-const Post = (props) => {
+const Post = memo((props) => {
+    const likePost = () => {
+        props.likePost(props.id)
+    };
     return (
         <div className={styles.post}>
             <div className={styles.post__info}>
@@ -11,11 +16,21 @@ const Post = (props) => {
             </div>
             <div className={styles.post__text}>{props.text}</div>
             <div className={styles.post__likes}>Likes: {props.likes}</div>
+            <button onClick={likePost}>Like</button>
         </div>
     )
-}
+})
 
 
 
 
-export default Post
+const mapStateToProps = (state) => ({
+    posts: state.profilePage.postsData,
+    newPostText: state.profilePage.newPostText,
+});
+
+const mapDispatchToProps = ({
+    likePost,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

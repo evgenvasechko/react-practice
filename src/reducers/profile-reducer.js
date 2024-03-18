@@ -42,7 +42,7 @@ const profileReducer = (state = initialState, action) => {
             if (state.newPostText) {
                 return {
                     ...state,
-                    postsData: [...state.postsData, {id: state.postsData.length, name: 'Hella Blackderville', text: state.newPostText, likes: 0 }],
+                    postsData: [...state.postsData, {id: state.postsData.length + 1, name: 'Hella Blackderville', text: state.newPostText, likes: 0 }],
                     newPostText: ''
                 }
             }
@@ -51,6 +51,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newPostText: action.newText
+            }
+        case actionTypes.LIKE_POST:
+            return {
+                ...state,
+                postsData: state.postsData.map(post => post.id === action.id ? { ...post, likes: post.likes += 1 } : post)
             }
         default: return state;
     }
