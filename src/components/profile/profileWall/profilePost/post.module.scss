@@ -22,4 +22,15 @@
         border-radius: 5px;
         max-width: 500px;
     }
+    &__likes {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    &__likeIco {
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+    }
 }

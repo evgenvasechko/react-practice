@@ -15,7 +15,7 @@ const Profile = (props) => {
     };
 
     const postsArr = props.posts.map((elem) => {
-        return <Post key={elem.id} id={elem.id} likes={elem.likes} text={elem.text} name={elem.name} />
+        return <Post key={elem.id} id={elem.id} likes={elem.likes} text={elem.text} name={elem.name} liked={elem.liked} />
     });
 
     return(

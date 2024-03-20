@@ -6,31 +6,36 @@ let initialState = {
             id: 1,
             name: 'Jane Doe',
             text: 'lorem ipsum dolor sit amet dagjkan adfgjfbnagp;jfbg agragjubrh [gaoirg[og',
-            likes: 23
+            likes: 23,
+            liked: false
         },
         {
             id: 2,
             name: 'Sascha Grand',
             text: 'lorem ipsum dolor sit amet dagjkan adfgjfbnagp;jfbg [og',
-            likes: 45
+            likes: 45,
+            liked: false
         },
         {
             id: 3,
             name: 'Mitch Cliff',
             text: 'lorem ipsum dolor sit amet  [gaoirg[og',
-            likes: 11
+            likes: 11,
+            liked: false
         },
         {
             id: 4,
             name: 'Juan Pedro',
             text: 'Black lives matter!',
-            likes: 3
+            likes: 3,
+            liked: false
         },
         {
             id: 5,
             name: 'Michael Jackson',
             text: 'Wooow!',
-            likes: 6
+            likes: 6,
+            liked: false
         }
     ],
     newPostText: ''
