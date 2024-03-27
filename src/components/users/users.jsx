@@ -6,15 +6,25 @@ import { connect } from "react-redux";
 
 import { followActionCreate as follow, 
         unfollowActionCreate as unfollow,
-        setUsersActionCreate as setUsers } from "./../../actions/users";
+        setUsersActionCreate as setUsers,
+        setCurrentPageActionCreate as setCurrentPage,
+        setTotalUsersActionCreate as setTotalUsersCount} from "./../../actions/users";
 
 
-const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }) => {
+const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow, pageSize, totalUsersCount, currentPage, setCurrentPage, setTotalUsersCount }) => {
+    const pagesCount = Math.ceil(totalUsersCount / pageSize);
+    const pages = [];
+    for (let i=1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+
     const [users, setUsers] = useState(data);
 
     useEffect(() => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`).then(response => {
             setUsersToStore(response.data.items);
+            setTotalUsersCount(response.data.totalCount);
+            console.log(response.data.totalCount);
         });
     }, []);
 
@@ -24,7 +34,19 @@ const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }
         }
     }, [data]);
 
+    const nextPage = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${pageSize}`).then(response => {
+            setUsersToStore(response.data.items);
+        });
+    }
+
     return <div className={styles.users}>
+        <div className={styles.pagination}>
+            {pages.map(p => {
+                return <span key={p} className={ currentPage === p ? styles.selectedPage : styles.unselectedPage} onClick={() => nextPage(p)}>{p}</span>
+            })}
+        </div>
         {users.length > 0 &&
             users.map(u => <div key={u.id}>
                 <div className={styles.user}>
@@ -55,12 +77,17 @@ const Users = ({ users: data = [], setUsers: setUsersToStore, follow, unfollow }
 
 const mapStateToProps = (state) => ({
     users: state.usersPage.usersData,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage,
 });
 
 const mapDispatchToProps = {
     follow,
     unfollow,
     setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
